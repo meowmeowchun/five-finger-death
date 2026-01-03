@@ -20,19 +20,19 @@ offset_bottom = 1227.0
 texture = ExtResource("2_hbghi")
 stretch_mode = 1
 
-[node name="top_boder" type="CollisionShape2D" parent="Floor"]
+[node name="top_border" type="CollisionShape2D" parent="Floor"]
 rotation = 3.1415927
 shape = SubResource("WorldBoundaryShape2D_hbghi")
 
-[node name="left_boder" type="CollisionShape2D" parent="Floor"]
+[node name="left_border" type="CollisionShape2D" parent="Floor"]
 rotation = 1.5707964
 shape = SubResource("WorldBoundaryShape2D_hbghi")
 
-[node name="down_boder" type="CollisionShape2D" parent="Floor"]
+[node name="down_border" type="CollisionShape2D" parent="Floor"]
 position = Vector2(0, 597)
 shape = SubResource("WorldBoundaryShape2D_hbghi")
 
-[node name="right_boder" type="CollisionShape2D" parent="Floor"]
+[node name="right_border" type="CollisionShape2D" parent="Floor"]
 position = Vector2(17980.535, 0)
 rotation = -1.5707964
 shape = SubResource("WorldBoundaryShape2D_hbghi")
