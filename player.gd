@@ -8,12 +8,8 @@ func _physics_process(_delta):
 	# Handle Sprite Flipping and Collision position
 	if direction.x > 0:
 		$Sprite2D.flip_h = false
-		$Sprite2D.offset.x = -15.0
-		$CollisionShape2D.position.x = 243
 	elif direction.x < 0:
 		$Sprite2D.flip_h = true
-		$Sprite2D.offset.x = 15.0
-		$CollisionShape2D.position.x = 304
 
 	# Check with components before moving
 	if $ShieldComponent.is_defending:
@@ -27,3 +23,12 @@ func _physics_process(_delta):
 
 func die():
 	get_tree().reload_current_scene()
+
+func take_damage():
+	if $DashComponent.is_dashing:
+		return # Invincible!
+	if $ShieldComponent.is_defending:
+		$ShieldComponent.shield_durability -= 25
+		return
+	
+	die() # From your previous script

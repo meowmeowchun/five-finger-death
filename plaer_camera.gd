@@ -4,7 +4,7 @@ extends Camera2D
 @export var shake_intensity = 3.0
 @export var shake_speed = 30.0
 
-var last_target_x = 0.0
+var last_target_x = -275.0
 var noise_time = 1.0
 
 func _process(delta):
@@ -14,9 +14,9 @@ func _process(delta):
 
 	# Update target based on player movement
 	if direction.x > 0:
-		last_target_x = 0.0
+		last_target_x = -275.0
 	elif direction.x < 0:
-		last_target_x = -screen_size.x * 0.7
+		last_target_x = -screen_size.x * 0.855
 
 	# Calculate Shake
 	var shake_vec = Vector2.ZERO
