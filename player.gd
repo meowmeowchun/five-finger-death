@@ -11,6 +11,14 @@ var noise_time = 1.0
 # --- THE FIX: Move target_x here so it is "remembered" ---
 var last_target_x = 0.0
 
+
+# --- DASH & SHIELD SETTINGS ---
+@export var dash_speed = 1200.0
+@export var shield_durability = 100.0
+
+var is_dashing = false
+var is_defending = false
+
 func _physics_process(delta):
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = direction * speed
@@ -42,5 +50,37 @@ func _physics_process(delta):
 	# 3. Apply to Camera using the "remembered" target
 	$Camera2D.offset.x = lerp($Camera2D.offset.x, last_target_x, camera_smooth_speed) + shake_vec.x
 	$Camera2D.offset.y = base_y_offset + shake_vec.y
+	
+	# --- DASH LOGIC ---
+	if Input.is_action_just_pressed("dash") and $DashCooldown.is_stopped():
+		is_dashing = true
+		$DashTimer.start(0.2) # Dash lasts 0.2 seconds
+		$DashCooldown.start(1.0) # Cannot dash again for 1 second
+	if is_dashing:
+		velocity = velocity.normalized() * dash_speed
+		if $DashTimer.is_stopped():
+			is_dashing = false
+
+	# --- DEFENSE LOGIC ---
+	if Input.is_action_pressed("defend") and shield_durability > 0:
+		is_defending = true
+		velocity = Vector2.ZERO # Can't move while shielding
+		shield_durability -= 0.5 # Drain durability
+	else:
+		is_defending = false
+		if shield_durability < 100:
+			shield_durability += 0.1 # Slow recharge
+	
 
 	move_and_slide()
+	
+	
+	
+func die():
+	print("Player Died!")
+	# You can add a death animation here
+	get_tree().reload_current_scene() # Restarts the level
+	
+	
+
+	

@@ -38,3 +38,9 @@ script = SubResource("GDScript_onrkg")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(242, 290)
 shape = SubResource("RectangleShape2D_hqtel")
+
+[node name="DashTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="DashCooldown" type="Timer" parent="."]
+one_shot = true
