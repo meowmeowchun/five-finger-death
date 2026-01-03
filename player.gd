@@ -27,7 +27,7 @@ func _physics_process(delta):
 		$Sprite2D.flip_h = true
 		$Sprite2D.offset.x = 15.0
 		last_target_x = -screen_size.x * 0.7 # Position for moving left
-		$CollisionShape2D.position.x = 302 # Move to positive side
+		$CollisionShape2D.position.x = 304 # Move to positive side
 	# If direction.x is 0, we simply DON'T update last_target_x, so it stays where it was!
 
 	var base_y_offset = -screen_size.y * 0.4 
