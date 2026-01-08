@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://clt2b874kpbdq" path="res://asset/enemy.png" id="2_qi2p4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iifgy"]
-size = Vector2(398, 61.5)
+size = Vector2(398, 24.25)
 
 [node name="EnemyMelee" type="CharacterBody2D"]
 script = ExtResource("1_4gyqm")
@@ -14,7 +14,7 @@ texture = ExtResource("2_qi2p4")
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 63.5)
+position = Vector2(0, 82.125)
 shape = SubResource("RectangleShape2D_iifgy")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
@@ -24,5 +24,5 @@ shape = SubResource("RectangleShape2D_iifgy")
 [node name="PunchZone" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PunchZone"]
-position = Vector2(0, 63.5)
+position = Vector2(0, 82.125)
 shape = SubResource("RectangleShape2D_iifgy")
