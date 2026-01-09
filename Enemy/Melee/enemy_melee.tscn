@@ -1,12 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://dqdmgb7wgj560"]
+[gd_scene load_steps=5 format=3 uid="uid://dqdmgb7wgj560"]
 
-[ext_resource type="Script" uid="uid://fk5w0qhaowoa" path="res://enemy.gd" id="1_4gyqm"]
+[ext_resource type="Script" uid="uid://fk5w0qhaowoa" path="res://Enemy/Melee/enemy_melee.gd" id="1_4gyqm"]
 [ext_resource type="Texture2D" uid="uid://clt2b874kpbdq" path="res://asset/enemy.png" id="2_qi2p4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iifgy"]
-size = Vector2(398, 24.25)
+size = Vector2(347, 24.25)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4gyqm"]
+radius = 27.0
+height = 110.0
 
 [node name="EnemyMelee" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 3
 script = ExtResource("1_4gyqm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -22,7 +28,9 @@ shape = SubResource("RectangleShape2D_iifgy")
 [node name="AttackTimer" type="Timer" parent="."]
 
 [node name="PunchZone" type="Area2D" parent="."]
+position = Vector2(-235, 46)
+collision_layer = 32
+collision_mask = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PunchZone"]
-position = Vector2(0, 82.125)
-shape = SubResource("RectangleShape2D_iifgy")
+shape = SubResource("CapsuleShape2D_4gyqm")

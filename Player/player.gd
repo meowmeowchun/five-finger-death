@@ -18,7 +18,9 @@ func _physics_process(_delta):
 		velocity = direction.normalized() * $DashComponent.dash_speed
 	else:
 		velocity = direction * speed
-
+	# Inside player.gd _physics_process
+	if $CombatComponent.is_attacking:
+		velocity = velocity * 0.2 # Slow down significantly while punching
 	move_and_slide()
 
 func die():
