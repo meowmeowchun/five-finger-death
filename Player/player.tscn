@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://c27mr7o8g4l2q" path="res://Player/plaer_camera.gd" id="3_hqtel"]
 [ext_resource type="Script" uid="uid://b0n313avlvpxl" path="res://Player/dash.gd" id="3_i3pqv"]
 [ext_resource type="Script" uid="uid://dhyj7j8ia4dor" path="res://Player/sheild.gd" id="5_sweqy"]
-[ext_resource type="Script" uid="uid://c4esi3ypetvo8" path="res://Player/combat_c_omponent.gd" id="6_fhl08"]
+[ext_resource type="Script" uid="uid://c4esi3ypetvo8" path="res://Player/combat_component.gd" id="6_fhl08"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hqtel"]
 size = Vector2(187.625, 29)
@@ -15,6 +15,7 @@ radius = 10.337079
 height = 26.378653
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k53q1"]
+size = Vector2(65.915, 27.076223)
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 z_index = 1
@@ -26,14 +27,12 @@ script = ExtResource("1_onrkg")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_onrkg")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(-1, 0)
-anchor_mode = 0
-script = ExtResource("3_hqtel")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 137.5)
 shape = SubResource("RectangleShape2D_hqtel")
+
+[node name="CombatComponent" type="Node" parent="."]
+script = ExtResource("6_fhl08")
 
 [node name="DashComponent" type="Node" parent="."]
 script = ExtResource("3_i3pqv")
@@ -62,9 +61,14 @@ collision_layer = 32
 collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PunchHitbox"]
+position = Vector2(22.957497, 4.319998)
 scale = Vector2(1, 8.79)
 shape = SubResource("RectangleShape2D_k53q1")
 disabled = true
 
-[node name="CombatComponent" type="Node" parent="."]
-script = ExtResource("6_fhl08")
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-1, 0)
+anchor_mode = 0
+script = ExtResource("3_hqtel")
+
+[connection signal="area_entered" from="PunchHitbox" to="CombatComponent" method="_on_punch_hitbox_area_entered"]

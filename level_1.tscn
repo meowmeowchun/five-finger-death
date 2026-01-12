@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://d2melecxcqrfu"]
+[gd_scene load_steps=7 format=3 uid="uid://d2melecxcqrfu"]
 
 [ext_resource type="PackedScene" uid="uid://cepo2xhyk4vm8" path="res://Player/player.tscn" id="1_3hls8"]
 [ext_resource type="Texture2D" uid="uid://cr6hsci5elsc0" path="res://asset/floor_dist.png" id="2_hbghi"]
 [ext_resource type="Texture2D" uid="uid://ccuksa2t7wixu" path="res://asset/wall.png" id="3_hn12h"]
 [ext_resource type="PackedScene" uid="uid://dqdmgb7wgj560" path="res://Enemy/Melee/enemy_melee.tscn" id="4_ihfcg"]
+[ext_resource type="AudioStream" uid="uid://cpynyctj5mk0d" path="res://asset/Sound/Five Finger Death bg music.mp3" id="5_rka8t"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_hbghi"]
 
@@ -48,3 +49,7 @@ position = Vector2(55, 3)
 
 [node name="EnemyMelee" parent="." instance=ExtResource("4_ihfcg")]
 position = Vector2(2137, 13)
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_rka8t")
+autoplay = true

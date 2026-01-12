@@ -14,8 +14,10 @@ func _physics_process(_delta):
 	# Check with components before moving
 	if $ShieldComponent.is_defending:
 		velocity = Vector2.ZERO
+		$Sprite2D.modulate = Color(0.5, 0.5, 1.0, 0.8) # Turn slightly blue/transparentd
 	elif $DashComponent.is_dashing:
 		velocity = direction.normalized() * $DashComponent.dash_speed
+		$Sprite2D.modulate = Color.WHITE # Return to normal
 	else:
 		velocity = direction * speed
 	# Inside player.gd _physics_process
@@ -26,11 +28,16 @@ func _physics_process(_delta):
 func die():
 	get_tree().reload_current_scene()
 
-func take_damage():
+# Add 'attacker' inside the parentheses
+func take_damage(_attacker):
+	# 1. Check Dash
 	if $DashComponent.is_dashing:
-		return # Invincible!
-	if $ShieldComponent.is_defending:
-		$ShieldComponent.shield_durability -= 25
 		return
-	
-	die() # From your previous script
+
+	# 2. Check Shield (The Safe Zone)
+	if $ShieldComponent.is_defending:
+		print("Blocked by the Safe Zone!")
+		return # ABSOLUTELY NOTHING HAPPENS. No charges lost here.
+
+	# 3. Otherwise, die
+	die()

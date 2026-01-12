@@ -1,62 +1,55 @@
 extends CharacterBody2D
 
-@export var speed = 200.0
-@export var attack_range = 80.0 # Slightly larger than the stop distance
-@export var stop_distance = 60.0 # How far from the player's center to stand
-
+@export var speed = 150.0
 @onready var player = get_tree().get_first_node_in_group("player")
 @onready var sprite = $Sprite2D
-@onready var attack_timer = $AttackTimer
 
-func _physics_process(_delta):
+var wander_offset = Vector2.ZERO
+var wander_timer = 0.0
+var is_hit = false # NEW: This stops the AI during knockback
+
+func _physics_process(delta):
 	if not player: return
-	
-	# 1. Calculate the Target Position (To the side of the player)
-	var direction_to_player = sign(player.global_position.x - global_position.x)
-	# If direction is 0 (rare), default to 1
-	if direction_to_player == 0: direction_to_player = 1
-	
-	# The "Sweet Spot" is to the left or right of the player
-	var target_pos = player.global_position
-	target_pos.x -= (direction_to_player * stop_distance)
+	# 1. THE GATEKEEPER
+	# If we are hit, skip all "chase" logic and just move with current velocity
+	if is_hit:
+		# Gradually slow down the knockback so they don't fly forever
+		velocity = velocity.move_toward(Vector2.ZERO, speed * delta)
+		move_and_slide()
+		return # THIS IS KEY. It stops the rest of the code from running.
 
-	# 2. Calculate vector to that specific target spot
-	var vec_to_target = target_pos - global_position
-	var distance_to_target = vec_to_target.length()
-
-	# 3. State Logic
-	if distance_to_target < 10.0: # If we are basically at the "Sweet Spot"
-		velocity = Vector2.ZERO
-		# Only attack if we are also lined up on the Y axis (the street depth)
-		if abs(player.global_position.y - global_position.y) < 20:
-			if attack_timer.is_stopped():
-				attack()
-	else:
-		# Move toward the sweet spot, not the player's center
-		velocity = vec_to_target.normalized() * speed
-	
-	# Add this inside _physics_process where you flip the sprite:
-	if player.global_position.x < global_position.x:
-		sprite.flip_h = true
-		$PunchZone.position.x = -abs($PunchZone.position.x)
-	else:
-		sprite.flip_h = false
-		$PunchZone.position.x = abs($PunchZone.position.x)
-	if not player: return
-	
+	# 2. CHASE LOGIC (Only runs if is_hit is false)
+	wander_timer -= delta
+	if wander_timer <= 0:
+		var random_angle = randf() * TAU 
+		wander_offset = Vector2(cos(random_angle), sin(random_angle)) * 40
+		wander_timer = randf_range(0.5, 1.2)
+	var target_pos = player.global_position + wander_offset
+	var direction = (target_pos - global_position).normalized()
+	velocity = direction * speed
+	sprite.flip_h = (player.global_position.x < global_position.x)
+	check_for_player_contact()
 	move_and_slide()
 
-func attack():
-	print("Enemy Attacks!")
-	attack_timer.start(1.5)
-	# (Insert your PunchZone check here)
-
-func take_damage():
-	print("Enemy hit!")
-	# Add knockback
-	velocity.x += 500 if player.global_position.x < global_position.x else -500
-	
-	# Simple hit flash or health reduction
-	modulate = Color.RED # Turns the enemy red for a moment
-	await get_tree().create_timer(0.1).timeout
+func take_damage(attacker):
+	# Ensure this 'print' is here so you can see it in the console!
+	print("ENEMY SCRIPT: I HAVE BEEN HIT!") 
+	if is_hit: return 
+	is_hit = true
+	var knock_dir = sign(global_position.x - attacker.global_position.x)
+	if knock_dir == 0: knock_dir = 1
+	velocity = Vector2(knock_dir * 1200, -300)
+	modulate = Color.RED
+	await get_tree().create_timer(0.4).timeout    
+	is_hit = false
 	modulate = Color.WHITE
+
+func check_for_player_contact():
+	# This uses the Area2D child of the enemy to check if it's touching the player
+	var areas = $TouchArea.get_overlapping_areas()
+	for area in areas:
+		# If the thing we touch is a player hurtbox, kill the player
+		if area.has_method("take_damage"):
+			area.take_damage(self)
+		elif area.get_parent().has_method("take_damage"):
+			area.get_parent().take_damage(self)

@@ -1,6 +1,6 @@
 extends Node
 
-@export var dash_speed = 1200.0
+@export var dash_speed = 2000.0
 var is_dashing = false
 
 func _process(_delta):
