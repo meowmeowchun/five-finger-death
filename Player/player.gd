@@ -1,43 +1,54 @@
 extends CharacterBody2D
 
 @export var speed = 500.0
+@onready var anim = $AnimationPlayer # Make sure the node name matches exactly!
 
 func _physics_process(_delta):
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	
-	# Handle Sprite Flipping and Collision position
 	if direction.x > 0:
 		$Sprite2D.flip_h = false
 	elif direction.x < 0:
 		$Sprite2D.flip_h = true
 
-	# Check with components before moving
 	if $ShieldComponent.is_defending:
 		velocity = Vector2.ZERO
-		$Sprite2D.modulate = Color(0.5, 0.5, 1.0, 0.8) # Turn slightly blue/transparentd
 	elif $DashComponent.is_dashing:
 		velocity = direction.normalized() * $DashComponent.dash_speed
-		$Sprite2D.modulate = Color.WHITE # Return to normal
 	else:
 		velocity = direction * speed
-	# Inside player.gd _physics_process
+
 	if $CombatComponent.is_attacking:
-		velocity = velocity * 0.2 # Slow down significantly while punching
+		velocity = velocity * 0.2 
+	
 	move_and_slide()
+
+func _process(_delta):
+	# 1. PRIORITY ANIMATIONS (Shield and Dash)
+	if $ShieldComponent.is_defending:
+		anim.play("shield") # Plays the shielding picture
+		return
+	
+	if $DashComponent.is_dashing:
+		anim.play("dash") # Plays the dash animation
+		return
+	
+	if $CombatComponent.is_attacking:
+		return
+
+	# 2. MOVEMENT ANIMATIONS (Idle and Walk)
+	if velocity.length() > 0:
+		anim.play("idle")
+	else:
+		anim.play("idle")
 
 func die():
 	get_tree().reload_current_scene()
 
-# Add 'attacker' inside the parentheses
 func take_damage(_attacker):
-	# 1. Check Dash
 	if $DashComponent.is_dashing:
 		return
-
-	# 2. Check Shield (The Safe Zone)
 	if $ShieldComponent.is_defending:
 		print("Blocked by the Safe Zone!")
-		return # ABSOLUTELY NOTHING HAPPENS. No charges lost here.
-
-	# 3. Otherwise, die
+		return
 	die()

@@ -13,3 +13,13 @@ func _process(_delta):
 	# Stop defending: When the key is released
 	if Input.is_action_just_released("defend"):
 		is_defending = false
+
+@onready var anim = $"../AnimationPlayer"
+
+func start_shielding():
+	is_defending = true
+	anim.play("shield") # Switch to your shield picture
+
+func stop_shielding():
+	is_defending = false
+	anim.play("idle") # Go back to normal
