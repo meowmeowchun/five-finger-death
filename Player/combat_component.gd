@@ -12,7 +12,6 @@ func _process(_delta):
 		punch()
 
 func punch():
-	print("--- PUNCH STARTED ---")
 	is_attacking = true
 	
 	# Flip the hitbox based on where the player is looking
@@ -30,18 +29,15 @@ func punch():
 	# Disable the hitbox
 	hitbox_shape.disabled = true
 	is_attacking = false
-	print("--- PUNCH FINISHED ---")
 
 # THIS IS THE KEY: 
 # Go to your PunchHitbox in the Editor -> Node Tab -> Signals 
 # Connect 'area_entered' to this function below:
 func _on_punch_hitbox_area_entered(area):
-	print("Hitbox touched something: ", area.name)
 	
 	var current_node = area
 	while current_node != null:
 		if current_node.has_method("take_damage"):
-			print("Found Enemy Script! Calling take_damage...")
 			current_node.take_damage(player)
 			return # Stop searching once we hit the enemy
 		current_node = current_node.get_parent()

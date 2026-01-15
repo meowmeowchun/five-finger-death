@@ -34,6 +34,7 @@ func _process(_delta):
 		return
 	
 	if $CombatComponent.is_attacking:
+		anim.play("punch")
 		return
 
 	# 2. MOVEMENT ANIMATIONS (Idle and Walk)

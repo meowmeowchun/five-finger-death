@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cepo2xhyk4vm8"]
+[gd_scene load_steps=31 format=3 uid="uid://cepo2xhyk4vm8"]
 
 [ext_resource type="Script" uid="uid://dhei31d31cgiw" path="res://Player/player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://dxllrkbbbko2o" path="res://asset/576_324 player.png" id="2_onrkg"]
@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://bqcba1te1eyk" path="res://asset/dash/dash11.png" id="18_bbimk"]
 [ext_resource type="Texture2D" uid="uid://b8ji8n27hk5vj" path="res://asset/dash/dash12.png" id="19_m0h3t"]
 [ext_resource type="Texture2D" uid="uid://d2daa5gi21rlu" path="res://asset/dash/dash13.png" id="20_i4o1l"]
+[ext_resource type="Texture2D" uid="uid://clhrtdqxejx8f" path="res://asset/punch.png" id="21_7emwf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hqtel"]
 size = Vector2(187.625, 29)
@@ -91,11 +92,27 @@ tracks/0/keys = {
 "values": [ExtResource("7_n471f")]
 }
 
+[sub_resource type="Animation" id="Animation_hshwv"]
+resource_name = "punch"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("21_7emwf")]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_iyprq"]
 _data = {
 &"RESET": SubResource("Animation_qs4pp"),
 &"dash": SubResource("Animation_jp1hh"),
 &"idle": SubResource("Animation_j2n6q"),
+&"punch": SubResource("Animation_hshwv"),
 &"shield": SubResource("Animation_c6x0f")
 }
 
