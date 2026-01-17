@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cepo2xhyk4vm8"]
+[gd_scene load_steps=32 format=3 uid="uid://cepo2xhyk4vm8"]
 
 [ext_resource type="Script" uid="uid://dhei31d31cgiw" path="res://Player/player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://dxllrkbbbko2o" path="res://asset/576_324 player.png" id="2_onrkg"]
@@ -23,14 +23,14 @@
 [ext_resource type="Texture2D" uid="uid://clhrtdqxejx8f" path="res://asset/punch.png" id="21_7emwf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hqtel"]
-size = Vector2(187.625, 29)
+size = Vector2(159.8125, 29)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k53q1"]
 radius = 10.337079
 height = 26.378653
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k53q1"]
-size = Vector2(65.915, 27.076223)
+size = Vector2(65.915, 14.222981)
 
 [sub_resource type="Animation" id="Animation_j2n6q"]
 resource_name = "idle"
@@ -76,6 +76,17 @@ tracks/0/keys = {
 "update": 1,
 "values": [ExtResource("2_onrkg")]
 }
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
 
 [sub_resource type="Animation" id="Animation_c6x0f"]
 resource_name = "sheild"
@@ -107,13 +118,40 @@ tracks/0/keys = {
 "values": [ExtResource("21_7emwf")]
 }
 
+[sub_resource type="Animation" id="Animation_7emwf"]
+resource_name = "walk"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16459413, 0.331, 0.4974),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_onrkg"), ExtResource("2_onrkg"), ExtResource("2_onrkg"), ExtResource("2_onrkg")]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0, 0, 0, 0.0069333334, 0.01454441, 0.05235988, -0.0069333334, -0.008726646, 0, 0, 0, -0.0069333334, 0.008726646, 0, 0, -0.05235988, -0.006933333, 0.008726646, 0, 0, 0, 0, 0, 0.0069333334, 0.01454441, 0.05235988, -0.0069333334, -0.008726646, 0, 0, 0, -0.0069333334, 0.008726646, 0, 0, -0.05235988, -0.006933333, 0.008726646, 0, 0, 0, 0, 0, 0.0069333334, 0.01454441, 0.05235988, -0.0069333334, -0.008726646, 0, 0, 0, -0.0069333334, 0.008726646, 0, 0, -0.05235988, -0.006933333, 0.008726646, 0, 0, 0, 0, 0, 0.0069333334, 0.01454441, 0.05235988, -0.0069333334, -0.008726646, 0, 0, 0, -0.0069333334, 0.008726646, 0, 0, -0.05235988, -0.006933333, 0.008726646, 0, 0),
+"times": PackedFloat32Array(0, 0.0416, 0.0832, 0.1248, 0.16459413, 0.20619413, 0.24779412, 0.28939414, 0.331, 0.3726, 0.4142, 0.4558, 0.4974, 0.539, 0.58059996, 0.6222)
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_iyprq"]
 _data = {
 &"RESET": SubResource("Animation_qs4pp"),
 &"dash": SubResource("Animation_jp1hh"),
 &"idle": SubResource("Animation_j2n6q"),
 &"punch": SubResource("Animation_hshwv"),
-&"shield": SubResource("Animation_c6x0f")
+&"shield": SubResource("Animation_c6x0f"),
+&"walk": SubResource("Animation_7emwf")
 }
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
@@ -146,8 +184,9 @@ one_shot = true
 script = ExtResource("5_sweqy")
 
 [node name="Hurtbox" type="Area2D" parent="."]
-position = Vector2(0, 36.615)
-scale = Vector2(8.9, 8.9)
+position = Vector2(0, 115.595)
+rotation = 1.5707964
+scale = Vector2(3.225, 8.9)
 collision_layer = 8
 collision_mask = 32
 
@@ -155,7 +194,8 @@ collision_mask = 32
 shape = SubResource("CapsuleShape2D_k53q1")
 
 [node name="PunchHitbox" type="Area2D" parent="."]
-position = Vector2(136.08499, 27.68)
+position = Vector2(170.1, 84.51)
+scale = Vector2(1.44, 1)
 collision_layer = 32
 collision_mask = 16
 

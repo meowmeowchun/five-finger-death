@@ -24,7 +24,7 @@ func punch():
 	hitbox_shape.disabled = false
 	
 	# Wait for a short duration (the length of the punch)
-	await get_tree().create_timer(0.15).timeout
+	await get_tree().create_timer(0.2).timeout
 	
 	# Disable the hitbox
 	hitbox_shape.disabled = true

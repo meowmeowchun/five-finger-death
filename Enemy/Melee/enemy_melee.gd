@@ -1,41 +1,57 @@
 extends CharacterBody2D
 
 @export var health = 3
-@export var speed = 150.0
+@export var speed = 300.0
+@export var orbit_radius = 200.0 
+@export var orbit_speed = 5
+@export var target_height_offset = 115.0 # Moves the center up to the player's chest
+
 @onready var player = get_tree().get_first_node_in_group("player")
 @onready var sprite = $Sprite2D
 
-var wander_offset = Vector2.ZERO
-var wander_timer = 0.0
 var is_hit = false 
+var orbit_angle = 0.0 
+
+func _ready():
+	# Start at a random spot so multiple enemies don't stack
+	orbit_angle = randf() * TAU
 
 func _physics_process(delta):
-	# 1. ENHANCED SAFETY CHECK
 	if not is_inside_tree() or not player or health <= 0:
 		return
 	
 	if is_hit:
 		velocity = velocity.move_toward(Vector2.ZERO, speed * delta)
-		# Only move if the physics space is still valid
 		if is_inside_tree(): 
 			move_and_slide()
 		return
 
-	# 2. CHASE LOGIC
-	wander_timer -= delta
-	if wander_timer <= 0:
-		var random_angle = randf() * TAU 
-		wander_offset = Vector2(cos(random_angle), sin(random_angle)) * 40
-		wander_timer = randf_range(0.5, 1.2)
+	# 1. CALCULATE THE CENTER (With Offset)
+	# We take the player's feet and move it up by target_height_offset
+	var center_point = player.global_position + Vector2(0, target_height_offset)
 
-	var target_pos = player.global_position + wander_offset
-	var direction = (target_pos - global_position).normalized()
-	velocity = direction * speed
+	# 2. UPDATE THE ANGLE
+	orbit_angle += orbit_speed * delta
+	
+	# 3. CALCULATE TARGET ON THE CIRCLE
+	var target_pos = center_point + Vector2(
+		cos(orbit_angle) * orbit_radius,
+		sin(orbit_angle) * orbit_radius
+	)
+	
+	# 4. SMOOTH MOVEMENT
+	# We calculate the direction to the circle point
+	var direction = global_position.direction_to(target_pos)
+	var distance = global_position.distance_to(target_pos)
+	
+	# If we are far away, move faster. If close, slow down to match the orbit.
+	var current_speed = speed if distance > 20 else speed * 0.8
+	velocity = direction * current_speed
+	
 	sprite.flip_h = (player.global_position.x < global_position.x)
 	
 	check_for_player_contact()
 	
-	# 3. FINAL MOVEMENT SAFETY
 	if is_inside_tree() and not is_queued_for_deletion():
 		move_and_slide()
 

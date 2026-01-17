@@ -23,14 +23,12 @@ func _physics_process(_delta):
 	
 	move_and_slide()
 
-func _process(_delta):
+func _process(_deltad):
 	# 1. PRIORITY ANIMATIONS (Shield and Dash)
 	if $ShieldComponent.is_defending:
-		anim.play("shield") # Plays the shielding picture
 		return
 	
 	if $DashComponent.is_dashing:
-		anim.play("dash") # Plays the dash animation
 		return
 	
 	if $CombatComponent.is_attacking:
@@ -39,7 +37,7 @@ func _process(_delta):
 
 	# 2. MOVEMENT ANIMATIONS (Idle and Walk)
 	if velocity.length() > 0:
-		anim.play("idle")
+		anim.play("walk")
 	else:
 		anim.play("idle")
 
@@ -50,6 +48,5 @@ func take_damage(_attacker):
 	if $DashComponent.is_dashing:
 		return
 	if $ShieldComponent.is_defending:
-		print("Blocked by the Safe Zone!")
 		return
 	die()
