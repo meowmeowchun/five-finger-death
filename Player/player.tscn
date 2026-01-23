@@ -26,41 +26,11 @@
 size = Vector2(159.8125, 29)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k53q1"]
-radius = 10.337079
-height = 26.378653
+radius = 8.187599
+height = 22.471912
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k53q1"]
 size = Vector2(65.915, 14.222981)
-
-[sub_resource type="Animation" id="Animation_j2n6q"]
-resource_name = "idle"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("2_onrkg")]
-}
-
-[sub_resource type="Animation" id="Animation_jp1hh"]
-resource_name = "dash"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0416, 0.0833, 0.12, 0.166, 0.2083, 0.25, 0.29, 0.3323, 0.374, 0.4156, 0.4573, 0.499, 0.53333336, 0.56666666, 0.6, 0.6666667, 0.70459616, 0.74689615, 0.78859615, 0.8285961, 0.87089616, 0.91259617, 0.95419616, 0.99589616),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [ExtResource("8_7emwf"), ExtResource("9_hshwv"), ExtResource("10_gpjlu"), ExtResource("11_8mwp6"), ExtResource("12_qemgg"), ExtResource("13_8viyr"), ExtResource("14_sm0op"), ExtResource("15_76lrf"), ExtResource("16_efx54"), ExtResource("17_755ss"), ExtResource("18_bbimk"), ExtResource("19_m0h3t"), ExtResource("20_i4o1l"), ExtResource("8_7emwf"), ExtResource("9_hshwv"), ExtResource("10_gpjlu"), ExtResource("11_8mwp6"), ExtResource("12_qemgg"), ExtResource("13_8viyr"), ExtResource("14_sm0op"), ExtResource("15_76lrf"), ExtResource("16_efx54"), ExtResource("17_755ss"), ExtResource("18_bbimk"), ExtResource("19_m0h3t")]
-}
 
 [sub_resource type="Animation" id="Animation_qs4pp"]
 length = 0.001
@@ -88,8 +58,23 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0)
 }
 
-[sub_resource type="Animation" id="Animation_c6x0f"]
-resource_name = "sheild"
+[sub_resource type="Animation" id="Animation_jp1hh"]
+resource_name = "dash"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0416, 0.0833, 0.12, 0.166, 0.2083, 0.25, 0.29, 0.3323, 0.374, 0.4156, 0.4573, 0.499, 0.53333336, 0.56666666, 0.6, 0.6666667, 0.70459616, 0.74689615, 0.78859615, 0.8285961, 0.87089616, 0.91259617, 0.95419616, 0.99589616),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("8_7emwf"), ExtResource("9_hshwv"), ExtResource("10_gpjlu"), ExtResource("11_8mwp6"), ExtResource("12_qemgg"), ExtResource("13_8viyr"), ExtResource("14_sm0op"), ExtResource("15_76lrf"), ExtResource("16_efx54"), ExtResource("17_755ss"), ExtResource("18_bbimk"), ExtResource("19_m0h3t"), ExtResource("20_i4o1l"), ExtResource("8_7emwf"), ExtResource("9_hshwv"), ExtResource("10_gpjlu"), ExtResource("11_8mwp6"), ExtResource("12_qemgg"), ExtResource("13_8viyr"), ExtResource("14_sm0op"), ExtResource("15_76lrf"), ExtResource("16_efx54"), ExtResource("17_755ss"), ExtResource("18_bbimk"), ExtResource("19_m0h3t")]
+}
+
+[sub_resource type="Animation" id="Animation_j2n6q"]
+resource_name = "idle"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -100,7 +85,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("7_n471f")]
+"values": [ExtResource("2_onrkg")]
 }
 
 [sub_resource type="Animation" id="Animation_hshwv"]
@@ -116,6 +101,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [ExtResource("21_7emwf")]
+}
+
+[sub_resource type="Animation" id="Animation_c6x0f"]
+resource_name = "sheild"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("7_n471f")]
 }
 
 [sub_resource type="Animation" id="Animation_7emwf"]
@@ -191,6 +191,7 @@ collision_layer = 8
 collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(2.916279, 0.11235952)
 shape = SubResource("CapsuleShape2D_k53q1")
 
 [node name="PunchHitbox" type="Area2D" parent="."]

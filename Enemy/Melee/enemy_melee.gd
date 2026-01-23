@@ -2,8 +2,8 @@ extends CharacterBody2D
 
 @export var health = 3
 @export var speed = 300.0
-@export var orbit_radius = 200.0 
-@export var orbit_speed = 5
+@export var orbit_radius = 250.0 
+@export var orbit_speed = 10
 @export var target_height_offset = 115.0 # Moves the center up to the player's chest
 
 @onready var player = get_tree().get_first_node_in_group("player")
