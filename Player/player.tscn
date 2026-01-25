@@ -23,39 +23,39 @@
 [ext_resource type="Texture2D" uid="uid://clhrtdqxejx8f" path="res://asset/punch.png" id="21_7emwf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hqtel"]
-size = Vector2(159.8125, 29)
+size = Vector2(193, 41)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k53q1"]
-radius = 8.187599
-height = 22.471912
+radius = 66.0
+height = 184.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k53q1"]
-size = Vector2(65.915, 14.222981)
+size = Vector2(65.915, 15.360638)
 
 [sub_resource type="Animation" id="Animation_qs4pp"]
 length = 0.001
-tracks/0/type = "value"
+tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/path = NodePath("Sprite2D:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("2_onrkg")]
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "handle_modes": PackedInt32Array(0),
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [ExtResource("2_onrkg")]
 }
 
 [sub_resource type="Animation" id="Animation_jp1hh"]
@@ -69,7 +69,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.0416, 0.0833, 0.12, 0.166, 0.2083, 0.25, 0.29, 0.3323, 0.374, 0.4156, 0.4573, 0.499, 0.53333336, 0.56666666, 0.6, 0.6666667, 0.70459616, 0.74689615, 0.78859615, 0.8285961, 0.87089616, 0.91259617, 0.95419616, 0.99589616),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
+"update": 0,
 "values": [ExtResource("8_7emwf"), ExtResource("9_hshwv"), ExtResource("10_gpjlu"), ExtResource("11_8mwp6"), ExtResource("12_qemgg"), ExtResource("13_8viyr"), ExtResource("14_sm0op"), ExtResource("15_76lrf"), ExtResource("16_efx54"), ExtResource("17_755ss"), ExtResource("18_bbimk"), ExtResource("19_m0h3t"), ExtResource("20_i4o1l"), ExtResource("8_7emwf"), ExtResource("9_hshwv"), ExtResource("10_gpjlu"), ExtResource("11_8mwp6"), ExtResource("12_qemgg"), ExtResource("13_8viyr"), ExtResource("14_sm0op"), ExtResource("15_76lrf"), ExtResource("16_efx54"), ExtResource("17_755ss"), ExtResource("18_bbimk"), ExtResource("19_m0h3t")]
 }
 
@@ -84,7 +84,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [ExtResource("2_onrkg")]
 }
 
@@ -99,7 +99,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [ExtResource("21_7emwf")]
 }
 
@@ -114,34 +114,34 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [ExtResource("7_n471f")]
 }
 
 [sub_resource type="Animation" id="Animation_7emwf"]
 resource_name = "walk"
-tracks/0/type = "value"
+tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/path = NodePath("Sprite2D:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.16459413, 0.331, 0.4974),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [ExtResource("2_onrkg"), ExtResource("2_onrkg"), ExtResource("2_onrkg"), ExtResource("2_onrkg")]
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0, 0, 0, 0.0069333334, 0.01454441, 0.05235988, -0.0069333334, -0.008726646, 0, 0, 0, -0.0069333334, 0.008726646, 0, 0, -0.05235988, -0.006933333, 0.008726646, 0, 0, 0, 0, 0, 0.0069333334, 0.01454441, 0.05235988, -0.0069333334, -0.008726646, 0, 0, 0, -0.0069333334, 0.008726646, 0, 0, -0.05235988, -0.006933333, 0.008726646, 0, 0, 0, 0, 0, 0.0069333334, 0.01454441, 0.05235988, -0.0069333334, -0.008726646, 0, 0, 0, -0.0069333334, 0.008726646, 0, 0, -0.05235988, -0.006933333, 0.008726646, 0, 0, 0, 0, 0, 0.0069333334, 0.01454441, 0.05235988, -0.0069333334, -0.008726646, 0, 0, 0, -0.0069333334, 0.008726646, 0, 0, -0.05235988, -0.006933333, 0.008726646, 0, 0),
+"times": PackedFloat32Array(0, 0.0416, 0.0832, 0.1248, 0.16459413, 0.20619413, 0.24779412, 0.28939414, 0.331, 0.3726, 0.4142, 0.4558, 0.4974, 0.539, 0.58059996, 0.6222)
 }
-tracks/1/type = "bezier"
+tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/path = NodePath("Sprite2D:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"handle_modes": PackedInt32Array(2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-"points": PackedFloat32Array(0, 0, 0, 0.0069333334, 0.01454441, 0.05235988, -0.0069333334, -0.008726646, 0, 0, 0, -0.0069333334, 0.008726646, 0, 0, -0.05235988, -0.006933333, 0.008726646, 0, 0, 0, 0, 0, 0.0069333334, 0.01454441, 0.05235988, -0.0069333334, -0.008726646, 0, 0, 0, -0.0069333334, 0.008726646, 0, 0, -0.05235988, -0.006933333, 0.008726646, 0, 0, 0, 0, 0, 0.0069333334, 0.01454441, 0.05235988, -0.0069333334, -0.008726646, 0, 0, 0, -0.0069333334, 0.008726646, 0, 0, -0.05235988, -0.006933333, 0.008726646, 0, 0, 0, 0, 0, 0.0069333334, 0.01454441, 0.05235988, -0.0069333334, -0.008726646, 0, 0, 0, -0.0069333334, 0.008726646, 0, 0, -0.05235988, -0.006933333, 0.008726646, 0, 0),
-"times": PackedFloat32Array(0, 0.0416, 0.0832, 0.1248, 0.16459413, 0.20619413, 0.24779412, 0.28939414, 0.331, 0.3726, 0.4142, 0.4558, 0.4974, 0.539, 0.58059996, 0.6222)
+"times": PackedFloat32Array(0, 0.16459413, 0.331, 0.4974),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [ExtResource("2_onrkg"), ExtResource("2_onrkg"), ExtResource("2_onrkg"), ExtResource("2_onrkg")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_iyprq"]
@@ -165,7 +165,7 @@ script = ExtResource("1_onrkg")
 texture = ExtResource("2_onrkg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 137.5)
+position = Vector2(0, 131.5)
 shape = SubResource("RectangleShape2D_hqtel")
 
 [node name="CombatComponent" type="Node" parent="."]
@@ -184,14 +184,11 @@ one_shot = true
 script = ExtResource("5_sweqy")
 
 [node name="Hurtbox" type="Area2D" parent="."]
-position = Vector2(0, 115.595)
-rotation = 1.5707964
-scale = Vector2(3.225, 8.9)
 collision_layer = 8
 collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(2.916279, 0.11235952)
+position = Vector2(0, 40)
 shape = SubResource("CapsuleShape2D_k53q1")
 
 [node name="PunchHitbox" type="Area2D" parent="."]
@@ -201,6 +198,7 @@ collision_layer = 32
 collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PunchHitbox"]
+position = Vector2(0, -5)
 scale = Vector2(1, 8.79)
 shape = SubResource("RectangleShape2D_k53q1")
 disabled = true

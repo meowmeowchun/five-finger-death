@@ -9,7 +9,7 @@ var is_dashing = false
 func _process(_delta):
 	if Input.is_action_just_pressed("dash") and $DashCooldown.is_stopped():
 		is_dashing = true
-		$DashTimer.start(0.2)
+		$DashTimer.start(0.3)
 		$DashCooldown.start(1.0)
 		anim.play("dash")
 	

@@ -16,7 +16,7 @@ func _process(delta):
 	if direction.x > 0:
 		last_target_x = -275.0
 	elif direction.x < 0:
-		last_target_x = -screen_size.x * 0.855
+		last_target_x = -screen_size.x * 0.6
 
 	# Calculate Shake
 	var shake_vec = Vector2.ZERO

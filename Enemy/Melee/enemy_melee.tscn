@@ -7,11 +7,11 @@
 size = Vector2(309, 24.25)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4gyqm"]
-radius = 106.0
+radius = 76.30058
 height = 386.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_whglc"]
-size = Vector2(416.4375, 85.6875)
+size = Vector2(416.4375, 107.68775)
 
 [node name="EnemyMelee" type="CharacterBody2D"]
 collision_layer = 4
@@ -33,6 +33,7 @@ collision_layer = 32
 collision_mask = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TouchArea"]
+position = Vector2(0, 32)
 rotation = 1.5707964
 scale = Vector2(0.865, 1)
 shape = SubResource("CapsuleShape2D_4gyqm")
@@ -42,5 +43,5 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(0, 57.844)
+position = Vector2(0, 46.843876)
 shape = SubResource("RectangleShape2D_whglc")

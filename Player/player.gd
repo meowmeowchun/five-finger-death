@@ -40,13 +40,31 @@ func _process(_deltad):
 		anim.play("walk")
 	else:
 		anim.play("idle")
+		
+var is_dead = false # Add this at the top with your other variables
 
 func die():
-	get_tree().reload_current_scene()
+	# 1. THE GATEKEEPER: If we are already dead, stop here!
+	if is_dead:
+		return
+	
+	is_dead = true
+	print("Player is restarting scene...")
+	
+	# 2. Check if the tree still exists before calling it
+	if get_tree():
+		get_tree().reload_current_scene()
 
 func take_damage(_attacker):
+	# 3. Don't take damage if we are already in the middle of dying
+	if is_dead:
+		return
+		
 	if $DashComponent.is_dashing:
 		return
+
 	if $ShieldComponent.is_defending:
+		print("Blocked by the Safe Zone!")
 		return
+
 	die()

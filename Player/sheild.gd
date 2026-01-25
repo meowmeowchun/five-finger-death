@@ -12,12 +12,8 @@ func _process(_delta):
 		shield_charges -= 1
 		is_defending = true
 		anim.play("shield") # Switch to your shield picture
-		player.set_collision_mask_value(3, false)
-		player.set_collision_layer_value(2, false)
 	
 	# Stop defending: When the key is released
 	if Input.is_action_just_released("defend"):
 		is_defending = false
-		player.set_collision_mask_value(3, true)
-		player.set_collision_layer_value(2, true)
 		anim.play("idle") # Go back to normal
